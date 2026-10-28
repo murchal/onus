@@ -1,10 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w3.org">
-
 <html xmlns="http://w3.org">
  <head>
-  <title>Tax Calculator - Onus Chartered Accountant</title>
+  <title>Tax Calculator Workspace - Onus Chartered Accountant</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-
   <style type="text/css" media="screen">
     body {
         font-family: Arial, sans-serif;
@@ -20,7 +18,6 @@
         border: 1px solid #ddd;
         border-radius: 6px;
     }
-    /* Navigation Bar Styling */
     .navbar {
         text-align: center;
         margin-bottom: 30px;
@@ -46,37 +43,201 @@
         color: white;
         border-color: #004085;
     }
-    
-    /* Temporary styling for our calculator workspace */
     .calc-container {
-        text-align: center;
-        padding: 40px;
-        border: 2px dashed #bbb;
-        background: #fafafa;
-        color: #666;
+        padding: 10px 20px;
+    }
+    .input-box {
+        background: #f1f5f9;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 25px;
+        border: 1px solid #cbd5e1;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #334155;
+    }
+    .form-input {
+        width: 250px;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+    }
+    .calc-btn {
+        background-color: #0056b3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .calc-btn:hover {
+        background-color: #004085;
+    }
+    .output-area {
+        margin-top: 20px;
+        display: none;
+    }
+    #report-zone {
+        padding: 20px;
+        border: 1px solid #e2e8f0;
+        background: #fff;
+        margin-bottom: 20px;
+    }
+    .report-header {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 10px;
+    }
+    .ird-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        font-size: 15px;
+    }
+    .ird-table th {
+        background-color: #d9e6eb;
+        color: #1e293b;
+        font-weight: bold;
+        padding: 12px 10px;
+        border: 1px solid #cbd5e1;
+    }
+    .ird-table th.left-align, .ird-table td.left-align {
+        text-align: left;
+    }
+    .ird-table th.right-align, .ird-table td.right-align {
+        text-align: right;
+    }
+    .ird-table td {
+        padding: 12px 10px;
+        border: 1px solid #e2e8f0;
+        color: #334155;
+    }
+    .ird-table tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+    .ird-table .total-row td {
+        font-weight: bold;
+        font-size: 16px;
+        border-top: 2px solid #475569;
+        background-color: #fff;
+        color: #0f172a;
+        padding: 15px 10px;
     }
   </style>
  </head>
-
  <body>
   <div id="wrapper">
-    <!-- Navigation Tabs -->
     <div class="navbar">
         <a href="index.html" class="nav-btn">Home</a>
         <a href="tax-calculator.html" class="nav-btn active">Tax Calculator</a>
     </div>
-
-    <!-- Calculator Area -->
     <div class="calc-container">
-        <h2>New Zealand Tax Calculator Workspace</h2>
-        <p>JavaScript logic and calculation forms will be added right here next.</p>
+        <h2>New Zealand Income Tax Calculator</h2>
+        <p>Enter your annual gross income below to calculate your progressive personal income tax breakdown matching IRD metrics.</p>
+        <div class="input-box">
+            <div class="form-group">
+                <label for="grossIncome">Annual Gross Income ($):</label>
+                <input type="number" id="grossIncome" class="form-input" value="123000" step="100" min="0" />
+            </div>
+            <button type="button" class="calc-btn" onclick="calculateNZTax()">Calculate Tax</button>
+        </div>
+        <div id="outputArea" class="output-area">
+            <div id="report-zone">
+                <div class="report-header">
+                    <h2 style="margin:0; color:#0f172a; font-size: 22px;">ONUS CHARTERED ACCOUNTANT</h2>
+                    <p style="margin:5px 0 0 0; color:#64748b; font-size:14px;">Income Tax Calculation Summary (IRD Bracket Breakdown)</p>
+                </div>
+                <div id="tableContainer"></div>
+            </div>
+        </div>
     </div>
   </div>
-
-  <!-- JavaScript Section -->
   <script type="text/javascript">
-    // Our future tax logic will be written inside these script tags!
-    console.log("Tax calculator page loaded cleanly.");
+    function calculateNZTax() {
+        const incomeInput = parseFloat(document.getElementById('grossIncome').value);
+        if (isNaN(incomeInput) || incomeInput < 0) {
+            alert("Please enter a valid positive income amount.");
+            return;
+        }
+
+        const brackets = [
+            { limit: 15600,  rate: 0.105, text: "Up to $15,600.00, taxed at 10.50%" },
+            { limit: 53500,  rate: 0.175, text: "Income over $15,600.00 and up to $53,500.00, taxed at 17.50%" },
+            { limit: 78100,  rate: 0.300, text: "Income over $53,500.00 and up to $78,100.00, taxed at 30.00%" },
+            { limit: 180000, rate: 0.330, text: "Income over $78,100.00 and up to $180,000.00, taxed at 33.00%" },
+            { limit: Infinity, rate: 0.390, text: "Remaining income over $180,000.00, taxed at 39.00%" }
+        ];
+
+        let remainingIncome = incomeInput;
+        let totalTax = 0;
+        let previousLimit = 0;
+        let calculationData =;
+
+        for (let i = 0; i < brackets.length; i++) {
+            const current = brackets[i];
+            const tierMaxCap = current.limit - previousLimit;
+            let taxableIncomeInTier = 0;
+
+            if (remainingIncome > tierMaxCap) {
+                taxableIncomeInTier = tierMaxCap;
+                remainingIncome -= tierMaxCap;
+            } else {
+                taxableIncomeInTier = remainingIncome;
+                remainingIncome = 0;
+            }
+
+            const taxInTier = taxableIncomeInTier * current.rate;
+            totalTax += taxInTier;
+
+            calculationData.push({
+                rateText: current.text,
+                incomeInTier: taxableIncomeInTier,
+                taxInTier: taxInTier
+            });
+
+            previousLimit = current.limit;
+            if (remainingIncome <= 0) {
+                for (let j = i + 1; j < brackets.length; j++) {
+                    calculationData.push({
+                        rateText: brackets[j].text,
+                        incomeInTier: 0,
+                        taxInTier: 0
+                    });
+                }
+                break;
+            }
+        }
+
+        let htmlTable = '<table class="ird-table"><thead><tr>';
+        htmlTable += '<th class="left-align">Income tax rate</th>';
+        htmlTable += '<th class="right-align">Income</th>';
+        htmlTable += '<th class="right-align">Tax</th></tr></thead><tbody>';
+
+        for (let k = 0; k < calculationData.length; k++) {
+            let row = calculationData[k];
+            htmlTable += '<tr><td class="left-align">' + row.rateText + '</td>';
+            htmlTable += '<td class="right-align">$' + row.incomeInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
+            htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+        }
+
+        htmlTable += '<tr class="total-row"><td>Total</td>';
+        htmlTable += '<td class="right-align">$' + incomeInput.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
+        htmlTable += '<td class="right-align">$' + totalTax.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+        htmlTable += '</tbody></table>';
+
+        document.getElementById('tableContainer').innerHTML = htmlTable;
+        document.getElementById('outputArea').style.display = 'block';
+    }
   </script>
  </body>
 </html>
+
