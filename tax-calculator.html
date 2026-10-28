@@ -1,5 +1,4 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w3.org">
-
 <html xmlns="http://w3.org">
  <head>
   <title>Tax Calculator Workspace - Onus Chartered Accountant</title>
@@ -164,13 +163,13 @@
   </div>
   <script type="text/javascript">
     function calculateNZTax() {
-        const incomeInput = parseFloat(document.getElementById('grossIncome').value);
+        var incomeInput = parseFloat(document.getElementById('grossIncome').value);
         if (isNaN(incomeInput) || incomeInput < 0) {
             alert("Please enter a valid positive income amount.");
             return;
         }
 
-        const brackets = [
+        var brackets = [
             { limit: 15600,  rate: 0.105, text: "Up to $15,600.00, taxed at 10.50%" },
             { limit: 53500,  rate: 0.175, text: "Income over $15,600.00 and up to $53,500.00, taxed at 17.50%" },
             { limit: 78100,  rate: 0.300, text: "Income over $53,500.00 and up to $78,100.00, taxed at 30.00%" },
@@ -178,15 +177,15 @@
             { limit: Infinity, rate: 0.390, text: "Remaining income over $180,000.00, taxed at 39.00%" }
         ];
 
-        let remainingIncome = incomeInput;
-        let totalTax = 0;
-        let previousLimit = 0;
-        let calculationData =;
+        var remainingIncome = incomeInput;
+        var totalTax = 0;
+        var previousLimit = 0;
+        var calculationData = [];
 
-        for (let i = 0; i < brackets.length; i++) {
-            const current = brackets[i];
-            const tierMaxCap = current.limit - previousLimit;
-            let taxableIncomeInTier = 0;
+        for (var i = 0; i < brackets.length; i++) {
+            var current = brackets[i];
+            var tierMaxCap = current.limit - previousLimit;
+            var taxableIncomeInTier = 0;
 
             if (remainingIncome > tierMaxCap) {
                 taxableIncomeInTier = tierMaxCap;
@@ -196,7 +195,7 @@
                 remainingIncome = 0;
             }
 
-            const taxInTier = taxableIncomeInTier * current.rate;
+            var taxInTier = taxableIncomeInTier * current.rate;
             totalTax += taxInTier;
 
             calculationData.push({
@@ -207,7 +206,7 @@
 
             previousLimit = current.limit;
             if (remainingIncome <= 0) {
-                for (let j = i + 1; j < brackets.length; j++) {
+                for (var j = i + 1; j < brackets.length; j++) {
                     calculationData.push({
                         rateText: brackets[j].text,
                         incomeInTier: 0,
@@ -218,13 +217,13 @@
             }
         }
 
-        let htmlTable = '<table class="ird-table"><thead><tr>';
+        var htmlTable = '<table class="ird-table"><thead><tr>';
         htmlTable += '<th class="left-align">Income tax rate</th>';
         htmlTable += '<th class="right-align">Income</th>';
         htmlTable += '<th class="right-align">Tax</th></tr></thead><tbody>';
 
-        for (let k = 0; k < calculationData.length; k++) {
-            let row = calculationData[k];
+        for (var k = 0; k < calculationData.length; k++) {
+            var row = calculationData[k];
             htmlTable += '<tr><td class="left-align">' + row.rateText + '</td>';
             htmlTable += '<td class="right-align">$' + row.incomeInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
             htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
