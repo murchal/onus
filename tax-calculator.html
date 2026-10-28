@@ -143,7 +143,7 @@
     </div>
     <div class="calc-container">
         <h2>New Zealand Income Tax Calculator</h2>
-        <p>Enter your annual gross income below to calculate your progressive personal income tax breakdown matching IRD metrics.</p>
+        <p>Enter your annual gross income to calculate your personal income tax.</p>
         <div class="input-box">
             <div class="form-group">
                 <label for="grossIncome">Annual Gross Income ($):</label>
@@ -173,10 +173,10 @@
 
         var brackets = [
             { limit: 15600,  rate: 0.105, text: "Up to $15,600.00, taxed at 10.50%" },
-            { limit: 53500,  rate: 0.175, text: "Income over $15,600.00 and up to $53,500.00, taxed at 17.50%" },
-            { limit: 78100,  rate: 0.300, text: "Income over $53,500.00 and up to $78,100.00, taxed at 30.00%" },
-            { limit: 180000, rate: 0.330, text: "Income over $78,100.00 and up to $180,000.00, taxed at 33.00%" },
-            { limit: Infinity, rate: 0.390, text: "Remaining income over $180,000.00, taxed at 39.00%" }
+            { limit: 53500,  rate: 0.175, text: "$15,601 - $53,500, taxed at 17.50%" },
+            { limit: 78100,  rate: 0.300, text: "$53,501 - $78,100, taxed at 30.00%" },
+            { limit: 180000, rate: 0.330, text: "$78,101 - $180,000, taxed at 33.00%" },
+            { limit: Infinity, rate: 0.390, text: "over $180,001, taxed at 39.00%" }
         ];
 
         var remainingIncome = incomeInput;
