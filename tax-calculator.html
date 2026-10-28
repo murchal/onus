@@ -163,6 +163,7 @@
     </div>
   </div>
   <script type="text/javascript">
+   
     function calculateNZTax() {
         var incomeInput = parseFloat(document.getElementById('grossIncome').value);
         if (isNaN(incomeInput) || incomeInput < 0) {
@@ -238,6 +239,16 @@
         document.getElementById('tableContainer').innerHTML = htmlTable;
         document.getElementById('outputArea').style.display = 'block';
     }
+   
+    // Listen for the "Enter" key press inside the income input box
+    document.getElementById('grossIncome').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        // Prevent the default browser action and trigger the calculation
+        event.preventDefault();
+        calculateNZTax();
+    }
+    });
+   
   </script>
  </body>
 </html>
