@@ -6,6 +6,8 @@
   <meta name="description" content="Auckland Chartered Accountant, Accounting and Taxation Services">
   <meta name="keywords" content="Accounting Auckland, Affordable,Tax, Taxation, Cheap, Rental, Tax Returns">
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <!-- Added viewport meta tag to ensure proper scaling on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style type="text/css" media="screen">
     body {
@@ -16,7 +18,10 @@
     }
     #wrapper {
         width: 950px;
+        max-width: 100%;
         margin: 25px auto;
+        padding: 0 15px;
+        box-sizing: border-box;
     }
     /* Navigation Bar Styling */
     .navbar {
@@ -44,6 +49,31 @@
         color: white;
         border-color: #004085;
     }
+
+    /* Responsive Images */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Mobile Media Query for screens 600px wide or smaller */
+    @media screen and (max-width: 600px) {
+        #wrapper {
+            margin: 10px auto;
+            padding: 0 10px;
+        }
+        .navbar {
+            padding: 5px 0;
+        }
+        .nav-btn {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin: 8px auto;
+            padding: 14px 20px;
+            font-size: 18px; /* Larger text for easier tapping */
+        }
+    }
   </style>
  </head>
 
@@ -61,10 +91,16 @@
         <tr>
           <td align="center" valign="top">
             <p>
-              <img border="0" src="panel1.png" alt="panel 1"/>
-              <img border="0" src="panel2.png" alt="panel 2"/>
-              <img border="0" src="panel3.png" alt="panel 3"/>
-              <img border="0" src="panel4.png" alt="panel 4"/>
+              <img border="0" src="panel1.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel2.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel3.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel4.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel5.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel6.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel7.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel8.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel9.png" alt="" onerror="this.style.display='none';" />
+              <img border="0" src="panel10.png" alt="" onerror="this.style.display='none';" />
             </p>
           </td>
         </tr>
