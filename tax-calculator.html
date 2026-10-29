@@ -26,31 +26,61 @@
         border-radius: 6px;
         box-sizing: border-box;
     }
+    
+    /* Navigation Bar Styling - Right Aligned & Text-Only */
     .navbar {
-        text-align: center;
+        position: relative;
+        text-align: right;
         margin-bottom: 30px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        border-bottom: none;
+    }
+    .nav-links {
+        display: inline-block;
     }
     .nav-btn {
         display: inline-block;
-        padding: 10px 20px;
-        margin: 0 5px;
-        background-color: #e3e3e3;
+        padding: 8px 12px;
+        margin-left: 15px;
+        background-color: transparent;
         color: #333;
         text-decoration: none;
         font-weight: bold;
-        border-radius: 4px;
-        border: 1px solid #ccc;
+        border: none;
+        border-radius: 0;
     }
     .nav-btn:hover {
-        background-color: #d0d0d0;
+        color: #0056b3;
+        text-decoration: underline;
+        background-color: transparent;
     }
     .nav-btn.active {
-        background-color: #0056b3;
-        color: white;
-        border-color: #004085;
+        color: #0056b3;
+        background-color: transparent;
+        border: none;
+        text-decoration: underline;
     }
+
+    /* Hamburger Menu Button (Hidden by default on desktops) */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: 1px solid #ccc;
+        background-color: #e3e3e3;
+        font-size: 24px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        color: #333;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .menu-toggle:hover {
+        background-color: #d0d0d0;
+    }
+
     .calc-container {
         padding: 10px 20px;
     }
@@ -81,7 +111,7 @@
         box-sizing: border-box;
     }
     .calc-btn {
-        background-color: #0056b3;
+        background-color:#0056b3; /* #d9faff  pervious #0056b3  */
         color: white;
         border: none;
         padding: 10px 20px;
@@ -172,16 +202,54 @@
             padding: 5px;
         }
         .navbar {
-            padding: 5px 0;
+            padding: 15px 0;
             margin-bottom: 20px;
+            text-align: left;
+        }
+        .menu-toggle {
+            display: block; /* Show hamburger icon on mobile */
+        }
+        /* Hide links by default on mobile until toggled */
+        .nav-links {
+            display: none; 
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            width: 200px;
+            background: #fff;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            box-sizing: border-box;
+            text-align: right; 
+            z-index: 100;
+        }
+        /* Class added via JavaScript when menu is open */
+        .nav-links.show {
+            display: block; 
         }
         .nav-btn {
             display: block;
-            width: 80%;
-            max-width: 300px;
-            margin: 8px auto;
-            padding: 14px 20px;
-            font-size: 18px;
+            width: 100%;
+            margin: 0;
+            padding: 8px 0;
+            font-size: 16px;
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            text-align: right;
+        }
+        .nav-btn:hover {
+            background-color: transparent;
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .nav-btn.active {
+            background-color: transparent;
+            color: #0056b3;
+            border: none;
+            text-decoration: underline;
         }
         .form-input {
             width: 100%;
@@ -202,8 +270,14 @@
  <body>
   <div id="wrapper">
     <div class="navbar">
-        <a href="index.html" class="nav-btn">Home</a>
-        <a href="tax-calculator.html" class="nav-btn active">Tax Calculator</a>
+        <!-- Hamburger Menu Icon Button -->
+        <button type="button" class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">&#9776;</button>
+        
+        <!-- Navigation Links Container -->
+        <div id="navLinks" class="nav-links">
+            <a href="index.html" class="nav-btn">Home</a>
+            <a href="tax-calculator.html" class="nav-btn active">Tax Calculator</a>
+        </div>
     </div>
     <div class="calc-container">
         <h2>New Zealand Income Tax Calculator</h2>
@@ -234,6 +308,14 @@
         </div>
     </div>
   </div>
+
+  <!-- JavaScript to toggle mobile menu open/close -->
+  <script type="text/javascript">
+    function toggleMenu() {
+        var links = document.getElementById('navLinks');
+        links.classList.toggle('show');
+    }
+  </script>
 
   <script type="text/javascript">
     function calculateNZTax() {
