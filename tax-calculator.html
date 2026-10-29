@@ -43,19 +43,19 @@
         padding: 8px 12px;
         margin-left: 15px;
         background-color: transparent;
-        color: #333;
+        color: #666666; /* previous #333; */
         text-decoration: none;
         font-weight: bold;
         border: none;
         border-radius: 0;
     }
     .nav-btn:hover {
-        color: #0056b3;
+        color: #333333; /* pervious #0056b3; */
         text-decoration: underline;
         background-color: transparent;
     }
     .nav-btn.active {
-        color: #0056b3;
+        color: #333333; /* pervious #0056b3; */
         background-color: transparent;
         border: none;
         text-decoration: underline;
@@ -84,8 +84,9 @@
     .calc-container {
         padding: 10px 20px;
     }
-    .input-box {
-        background: #f1f5f9;
+    /* background around the input box and calaculate tax button */
+	.input-box {
+        background: #d9e6eb; /* previous #f1f5f9; */
         padding: 20px;
         border-radius: 6px;
         margin-bottom: 25px;
@@ -110,8 +111,9 @@
         border-radius: 4px;
         box-sizing: border-box;
     }
-    .calc-btn {
-        background-color:#0056b3; /* #d9faff  pervious #0056b3  */
+    /* calculator button style */
+	.calc-btn {
+        background-color: #666666; /* pervious #0056b3  */
         color: white;
         border: none;
         padding: 10px 20px;
@@ -121,7 +123,7 @@
         cursor: pointer;
     }
     .calc-btn:hover {
-        background-color: #004085;
+        background-color: #333333 /* pervious #004085; */
     }
     .output-area {
         margin-top: 20px;
@@ -146,6 +148,7 @@
     }
 
     /* Responsive Table Styles */
+	/* output table header */ 
     .ird-table {
         width: 100%;
         border-collapse: collapse;
@@ -302,7 +305,9 @@
             </div>
             
             <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
-				<button type="button" class="calc-btn" style="background-color: #64748b; margin-right: 10px;" onclick="clearTaxCalculator()">Clear</button>
+			
+				<button type="button" class="calc-btn" style="margin-right: 10px;" onclick="clearTaxCalculator()">Clear</button>
+				 <!--  <button type="button" class="calc-btn" style="background-color: #64748b; margin-right: 10px;" onclick="clearTaxCalculator()">Clear</button> -->
                 <button type="button" class="calc-btn" onclick="generatePrivatePDF()">Download PDF Statement</button>
             </div>
         </div>
