@@ -387,15 +387,15 @@
         for (let k = 0; k < calculationData.length; k++) {
             let row = calculationData[k];
             htmlTable += '<tr><td class="left-align">' + row.rateText + '</td>';
-            htmlTable += '<td class="right-align">$' + row.incomeInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-            htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-            htmlTable += '<td class="right-align">$' + row.netInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+            htmlTable += '<td class="right-align">$' + row.incomeInTier.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td>';
+            htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td>';
+            htmlTable += '<td class="right-align">$' + row.netInTier.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td></tr>';
         }
 
         htmlTable += '<tr class="total-row"><td>Total</td>';
-        htmlTable += '<td class="right-align">$' + incomeInput.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-        htmlTable += '<td class="right-align">$' + totalTax.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-        htmlTable += '<td class="right-align">$' + totalNet.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+        htmlTable += '<td class="right-align">$' + incomeInput.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td>';
+        htmlTable += '<td class="right-align">$' + totalTax.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td>';
+        htmlTable += '<td class="right-align">$' + totalNet.toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '</td></tr>';
         htmlTable += '</tbody></table>';
 
         document.getElementById('tableContainer').innerHTML = htmlTable;
@@ -430,8 +430,8 @@
 
         const grossIncomeInput = document.getElementById('grossIncome').value;
         const formattedGrossIncome = !isNaN(grossIncomeInput) && grossIncomeInput !== "" 
-            ? parseFloat(grossIncomeInput).toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) 
-            : "0.00";
+            ? parseFloat(grossIncomeInput).toLocaleString('en-NZ', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) 
+            : "0";
 
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
