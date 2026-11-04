@@ -43,19 +43,19 @@
         padding: 8px 12px;
         margin-left: 15px;
         background-color: transparent;
-        color: #666666; /* previous #333; */
+        color: #666666;
         text-decoration: none;
         font-weight: bold;
         border: none;
         border-radius: 0;
     }
     .nav-btn:hover {
-        color: #333333; /* pervious #0056b3; */
+        color: #333333;
         text-decoration: underline;
         background-color: transparent;
     }
     .nav-btn.active {
-        color: #333333; /* pervious #0056b3; */
+        color: #333333;
         background-color: transparent;
         border: none;
         text-decoration: underline;
@@ -84,9 +84,9 @@
     .calc-container {
         padding: 10px 20px;
     }
-    /* background around the input box and calaculate tax button */
+    /* background around the input box and calculate tax button */
 	.input-box {
-        background: #d9e6eb; /* previous #f1f5f9; */
+        background: #d9e6eb;
         padding: 20px;
         border-radius: 6px;
         margin-bottom: 25px;
@@ -113,7 +113,7 @@
     }
     /* calculator button style */
 	.calc-btn {
-        background-color: #666666; /* pervious #0056b3  */
+        background-color: #666666;
         color: white;
         border: none;
         padding: 10px 20px;
@@ -123,7 +123,7 @@
         cursor: pointer;
     }
     .calc-btn:hover {
-        background-color: #333333 /* pervious #004085; */
+        background-color: #333333;
     }
     .output-area {
         margin-top: 20px;
@@ -148,12 +148,11 @@
     }
 
     /* Responsive Table Styles */
-	/* output table header */ 
     .ird-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 15px;
-        font-size: 14px; /* Slightly adjusted for better mobile fit */
+        font-size: 14px;
     }
     .ird-table th {
         background-color: #d9e6eb;
@@ -165,11 +164,11 @@
     .ird-table th.left-align, .ird-table td.left-align {
         text-align: left;
         word-break: normal;
-        overflow-wrap: break-word; /* Allows description text to wrap gracefully onto multiple rows */
+        overflow-wrap: break-word;
     }
     .ird-table th.right-align, .ird-table td.right-align {
         text-align: right;
-        white-space: nowrap; /* Keeps currency values from splitting awkwardly across lines */
+        white-space: nowrap;
     }
     .ird-table td {
         padding: 10px 8px;
@@ -210,9 +209,8 @@
             text-align: left;
         }
         .menu-toggle {
-            display: block; /* Show hamburger icon on mobile */
+            display: block;
         }
-        /* Hide links by default on mobile until toggled */
         .nav-links {
             display: none; 
             position: absolute;
@@ -228,7 +226,6 @@
             text-align: right; 
             z-index: 100;
         }
-        /* Class added via JavaScript when menu is open */
         .nav-links.show {
             display: block; 
         }
@@ -245,12 +242,12 @@
         }
         .nav-btn:hover {
             background-color: transparent;
-            color: #333333; /* pervious #0056b3; */
+            color: #333333;
             text-decoration: underline;
         }
         .nav-btn.active {
             background-color: transparent;
-            color: #333333; /* pervious #0056b3; */
+            color: #333333;
             border: none;
             text-decoration: underline;
         }
@@ -283,7 +280,7 @@
         </div>
     </div>
     <div class="calc-container">
-        <h2>New Zealand Income Tax Calculator</h2>
+        <h2>New Zealand 2026 Income Tax Calculator</h2>
         <p>Enter your annual gross income below to calculate your progressive personal income tax breakdown matching IRD metrics.</p>
         
         <div class="input-box">
@@ -298,16 +295,14 @@
         <div id="outputArea" class="output-area">
             <div id="report-zone">
                 <div class="report-header">
-                    <h2 style="margin:0; color:#0f172a; font-size: 22px;">ONUS CHARTERED ACCOUNTANT</h2>
+                    <h2 style="margin:0; color:#0f172a; font-size: 22px;">ONUS C.A.</h2>
                     <p style="margin:5px 0 0 0; color:#64748b; font-size:14px;">Income Tax Calculation Summary</p>
                 </div>
                 <div id="tableContainer"></div>
             </div>
             
             <div style="text-align: left; margin-left: 20px; margin-top: 20px;">
-			
 				<button type="button" class="calc-btn" style="margin-right: 10px;" onclick="clearTaxCalculator()">Clear</button>
-				 <!--  <button type="button" class="calc-btn" style="background-color: #64748b; margin-right: 10px;" onclick="clearTaxCalculator()">Clear</button> -->
                 <button type="button" class="calc-btn" onclick="generatePrivatePDF()">Download PDF Statement</button>
             </div>
         </div>
@@ -331,11 +326,11 @@
         }
 
         var brackets = [
-            { limit: 15600,  rate: 0.105, text: "Up to $15,600.00, taxed at 10.50%" },
-            { limit: 53500,  rate: 0.175, text: "$15,600.00 - $53,500.00, taxed at 17.50%" },
-            { limit: 78100,  rate: 0.300, text: "$53,500.00 - $78,100.00, taxed at 30.00%" },
-            { limit: 180000, rate: 0.330, text: "$78,100.00 - $180,000.00, taxed at 33.00%" },
-            { limit: Infinity, rate: 0.390, text: "over $180,000.00, taxed at 39.00%" }
+            { limit: 15600,  rate: 0.105, text: "0 - $15,600 @ 10.50%" },
+            { limit: 53500,  rate: 0.175, text: "$15,601 - $53,500 @ 17.50%" },
+            { limit: 78100,  rate: 0.300, text: "$53,501 - $78,100 @ 30.00%" },
+            { limit: 180000, rate: 0.330, text: "$78,101 - $180,000 @ 33.00%" },
+            { limit: Infinity, rate: 0.390, text: "over $181,000 @ 39.00%" }
         ];
 
         let remainingIncome = incomeInput;
@@ -358,11 +353,13 @@
 
             const taxInTier = taxableIncomeInTier * current.rate;
             totalTax += taxInTier;
+            const netInTier = taxableIncomeInTier - taxInTier;
 
             calculationData.push({
                 rateText: current.text,
                 incomeInTier: taxableIncomeInTier,
-                taxInTier: taxInTier
+                taxInTier: taxInTier,
+                netInTier: netInTier
             });
 
             previousLimit = current.limit;
@@ -371,28 +368,34 @@
                     calculationData.push({
                         rateText: brackets[j].text,
                         incomeInTier: 0,
-                        taxInTier: 0
+                        taxInTier: 0,
+                        netInTier: 0
                     });
                 }
                 break;
             }
         }
 
+        let totalNet = incomeInput - totalTax;
+
         let htmlTable = '<table class="ird-table"><thead><tr>';
-        htmlTable += '<th class="left-align">Income tax rate</th>';
+        htmlTable += '<th class="left-align">Income tax rate 1/4/2025 - 31/3/2026</th>';
         htmlTable += '<th class="right-align">Income</th>';
-        htmlTable += '<th class="right-align">Tax</th></tr></thead><tbody>';
+        htmlTable += '<th class="right-align">Tax</th>';
+        htmlTable += '<th class="right-align">Net</th></tr></thead><tbody>';
 
         for (let k = 0; k < calculationData.length; k++) {
             let row = calculationData[k];
             htmlTable += '<tr><td class="left-align">' + row.rateText + '</td>';
             htmlTable += '<td class="right-align">$' + row.incomeInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-            htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+            htmlTable += '<td class="right-align">$' + row.taxInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
+            htmlTable += '<td class="right-align">$' + row.netInTier.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
         }
 
         htmlTable += '<tr class="total-row"><td>Total</td>';
         htmlTable += '<td class="right-align">$' + incomeInput.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
-        htmlTable += '<td class="right-align">$' + totalTax.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
+        htmlTable += '<td class="right-align">$' + totalTax.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>';
+        htmlTable += '<td class="right-align">$' + totalNet.toLocaleString('en-NZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td></tr>';
         htmlTable += '</tbody></table>';
 
         document.getElementById('tableContainer').innerHTML = htmlTable;
@@ -436,7 +439,7 @@
         doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
         doc.setTextColor(15, 23, 42);
-        doc.text("ONUS CHARTERED ACCOUNTANT", 15, 20);
+        doc.text("ONUS C.A.", 15, 20);
 
         doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
@@ -464,7 +467,8 @@
             columnStyles: {
                 0: { halign: 'left' },
                 1: { halign: 'right' },
-                2: { halign: 'right' }
+                2: { halign: 'right' },
+                3: { halign: 'right' }
             },
             styles: {
                 font: 'helvetica',
